@@ -7,13 +7,13 @@
 
 @font-face {
   font-family: 'torsae'; /* Le nom que vous donnez à votre police */
-  src: url('TORSAE.otf') format('otf'),
+  src: url('./fonts/TORSAE.otf') format('otf'),
 
 }
 
 @font-face {
   font-family: 'screwball'; /* Le nom que vous donnez à votre police */
-  src: url('screwball-regular.otf') format('otf'),
+  src: url('./fonts/screwball-regular.otf') format('otf'),
 
 }
 
