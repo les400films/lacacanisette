@@ -8,7 +8,9 @@ CSS
 
 @font-face {
   font-family: 'torsae';
-  src: url('./torsae.woff2') format('woff2'); /* Virgule remplacée par un point-virgule */
+  src: url('./torsae.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
 }
 
 @font-face {
@@ -27,6 +29,7 @@ body {
 
 header h1 {
   font-family: 'torsae', "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-weight: normal;
   text-align: center;
   margin-bottom: 30px;
   color: #d8bf19;
