@@ -9,7 +9,7 @@ CSS
 @font-face {
   font-family: 'fatkat';
   src: url('./fatkat.ttf') format('truetype');
-  font-weight: normal;
+  font-weight: normal; /* <--- ICI */
   font-style: normal;
 }
 
