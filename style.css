@@ -8,7 +8,7 @@ CSS
 
 @font-face {
   font-family: 'torsae';
-  src: url('./torsae.woff2') format('woff2');
+  src: url('./TORSAE.otf') format('opentype');
   font-weight: normal;
   font-style: normal;
 }
