@@ -25,6 +25,13 @@
         <label for="folder-input" class="scan-btn">Scan Caca</label>
         <input type="file" id="folder-input" webkitdirectory directory multiple style="display:none;" />
       </div>
+      <!-- Insérer ce bloc sous la div .scan-container dans index.html -->
+<div class="data-container" style="margin-top: 15px; display: flex; gap: 10px;">
+  <button id="export-btn" class="scan-btn">Télécharger la cacaliste </button>
+  
+  <label for="import-input" class="scan-btn">Importer une cacaliste</label>
+  <input type="file" id="import-input" accept=".json" style="display:none;" />
+</div>
     </section>
 
     <!-- Section Tri, Filtres & Aléatoire -->
