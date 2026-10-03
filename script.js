@@ -328,3 +328,74 @@ async function searchAndAddByTitle(cleanTitle) {
     console.error(`Erreur lors de la recherche pour "${cleanTitle}":`, err);
   }
 }
+
+
+// ==========================================
+// EXPORT ET IMPORT DE LA COLLECTION
+// ==========================================
+
+const exportBtn = document.getElementById('export-btn');
+const importInput = document.getElementById('import-input');
+
+// 1. EXPORTER LA LISTE EN FICHIER JSON
+if (exportBtn) {
+  exportBtn.addEventListener('click', () => {
+    if (myCollection.length === 0) {
+      alert("Ta collection est vide ! Rien à exporter.");
+      return;
+    }
+
+    // Conversion de la collection en chaîne JSON formatée
+    const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(myCollection, null, 2));
+    
+    // Création d'un lien de téléchargement temporaire
+    const downloadAnchor = document.createElement('a');
+    downloadAnchor.setAttribute("href", dataStr);
+    downloadAnchor.setAttribute("download", `cacanisette_collection_${new Date().toISOString().slice(0,10)}.json`);
+    document.body.appendChild(downloadAnchor);
+    
+    // Déclenchement du téléchargement
+    downloadAnchor.click();
+    downloadAnchor.remove();
+  });
+}
+
+// 2. IMPORTER LA LISTE DEPUIS UN FICHIER JSON
+if (importInput) {
+  importInput.addEventListener('change', (event) => {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+
+    reader.onload = (e) => {
+      try {
+        const importedData = JSON.parse(e.target.result);
+
+        if (!Array.isArray(importedData)) {
+          alert("Le fichier importé n'est pas valide.");
+          return;
+        }
+
+        // Fusion sans doublons (en se basant sur l'ID du film)
+        let addedCount = 0;
+        importedData.forEach(importedMovie => {
+          if (importedMovie.id && !myCollection.some(m => m.id === importedMovie.id)) {
+            myCollection.push(importedMovie);
+            addedCount++;
+          }
+        });
+
+        saveAndRender();
+        alert(`${addedCount} film(s) ajouté(s) à ta collection !`);
+
+      } catch (err) {
+        console.error("Erreur lors de l'importation :", err);
+        alert("Erreur lors de la lecture du fichier JSON.");
+      }
+    };
+
+    reader.readAsText(file);
+    importInput.value = ''; // Réinitialisation du champ de fichier
+  });
+}
